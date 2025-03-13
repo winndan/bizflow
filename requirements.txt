@@ -1,0 +1,5 @@
+python-dotenv
+python-fasthtml
+monsterUi
+pydantic
+email-validator
