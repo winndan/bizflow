@@ -3,3 +3,6 @@ python-fasthtml
 monsterUi
 pydantic
 email-validator
+uvicorn
+fastapi
+mangum

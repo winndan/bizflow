@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messenger Bot - Live Messages</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #f4f4f4;
+            margin: 10px auto;
+            padding: 10px;
+            border-radius: 5px;
+            width: 50%;
+            text-align: left;
+        }
+        .sender {
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>📩 Live Incoming Messages</h2>
+    <ul id="messages-list">
+        <li>Waiting for messages...</li>
+    </ul>
+
+    <script>
+        async function fetchMessages() {
+            try {
+                const response = await fetch("http://localhost:8000/messages");
+                const data = await response.json();
+                const messages = data.messages;
+
+                const messagesList = document.getElementById("messages-list");
+                messagesList.innerHTML = ""; // Clear previous messages
+
+                messages.forEach(msg => {
+                    const li = document.createElement("li");
+                    li.innerHTML = `<span class="sender">User ${msg.sender}:</span> ${msg.text}`;
+                    messagesList.appendChild(li);
+                });
+            } catch (error) {
+                console.error("Error fetching messages:", error);
+            }
+        }
+
+        // Fetch messages when the page loads
+        fetchMessages();
+
+        // Refresh messages every 5 seconds
+        setInterval(fetchMessages, 5000);
+    </script>
+
+</body>
+</html>
