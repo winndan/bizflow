@@ -1,8 +1,9 @@
+fastapi
+uvicorn
+mangum
+httpx
 python-dotenv
-python-fasthtml
-monsterUi
 pydantic
 email-validator
-uvicorn
-fastapi
-mangum
+python-fasthtml
+monsterUi
